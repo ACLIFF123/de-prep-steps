@@ -27,31 +27,31 @@ Make sure you understand why you got the results you did and investigate any tha
 A:
 
 ```python
-a * b
+a * b  int
 ```
 
 B:
 
 ```python
-b * c
+b * c  float 
 ```
 
 C:
 
 ```python
-b + c
+b + c float
 ```
 
 D:
 
 ```python
-d - a
+d - a float 
 ```
 
 E:
 
 ```python
-a % b
+a % b 
 ```
 
 F:
@@ -63,31 +63,32 @@ a % 5.0
 G:
 
 ```python
-b**2
+b**2   = #to the power of 2 = 25 = int 
 ```
 
 H:
 
 ```python
-a + b
+a + b int 
 ```
 
 I:
 
 ```python
-b / a
+b / a 
 ```
 
 J:
 
 ```python
-a // b
+a // b  #Floor division a / b = 2.4 the // rounds the decimal to whole number so a // b = 2 
 ```
 
 K:
 
 ```python
-len('northcoders') + b
+len('northcoders') + b #len('northcoders') = 11 len basically gives you the number of letters in the word
+
 ```
 
 # Strings
@@ -106,13 +107,23 @@ In the Python REPL, create the following string variables:
 You can see what _methods_ are available for strings in the [documentation](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
 but you might find it easier to check out [SpeedSheet](https://speedsheet.io/s/python?q=strings-only#T7xJ). Use _string methods_ to create:
 
-A. A new variable called `shouty_name` with value `DAVID JOHN BARTLETT`
+A. A new variable called `shouty_name` with value `DAVID JOHN BARTLETT` 
+
+# shouty_name = tutor.upper()
 
 B. A new variable called `low_key_title` with value `mr`
 
+# low_key_title = title.lower()
+
 C. A new variable called `low_key_job_title` with value `senior tutor`
 
+# low_key_job_title = job_title.lower()
+
+
 D. A new variable called `low_key_full_honours` with value `mr david john bartlett senior tutor`
+
+# look into slicing and estrpilating cetrain data from a string
+
 
 For getting _parts_ of strings, check out [substrings and slicing](https://speedsheet.io/s/python?q=strings-only#nXRd)
 

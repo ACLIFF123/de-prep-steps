@@ -10,7 +10,7 @@ from test_api.checks import run_test, skip_test, format_err_msg
 # Fix the function below to pass the test!
 
 def return_last_digit(number):
-    digit_string = str(number)
+    digit_string = (number)
     return digit_string[-1]
 
 
