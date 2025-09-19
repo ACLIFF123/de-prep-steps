@@ -19,8 +19,15 @@ get_even_nums([1, 2, 3]) # returns [2]
 
 
 def get_even_nums(nums):
-    # your code here
-    pass
+    even_numbers = []
+    for num in nums:
+        if num % 2 == 0:
+            even_numbers.append(num)
+    return even_numbers
+
+# list comprehension verision to consider 
+# def get_even_nums(nums):
+    return [num for num in nums if num % 2 == 0]
 
 
 @run_test
@@ -64,32 +71,37 @@ get_items_longer_than(['a','bb','ccc'], 4) # returns [];
 
 def get_items_longer_than(strs, max_len):
     # your code here
-    pass
+    long_list = [] 
+    for word in strs:
+        if len(word) > max_len:
+            long_list.append(word)
+    return long_list
+    
 
 
 # ❗ Remember to change @skip_test to @run_test!
-@skip_test
+@run_test
 def get_items_longer_than_should_return_empty_list_when_no_strings():
     assert get_items_longer_than([], 1) == [], format_err_msg(
         [], get_items_longer_than([], 1)
     )
 
 
-@skip_test
+@run_test
 def get_items_longer_than_should_return_all_strings_longer_than_max_len():
     assert get_items_longer_than(["a", "bb"], 0) == ["a", "bb"], format_err_msg(
         ["a", "bb"], get_items_longer_than(["a", "bb"], 0)
     )
 
 
-@skip_test
+@run_test
 def get_items_longer_than_should_exclude_strings_shorter_than_max_len():
     assert get_items_longer_than(["a", "bb"], 3) == [], format_err_msg(
         [], get_items_longer_than(["a", "bb"], 3)
     )
 
 
-@skip_test
+@run_test
 def get_items_longer_than_should_exclude_strings_equal_to_max_len():
     assert get_items_longer_than(["a", "bb", "ccc"], 2) == ["ccc"], format_err_msg(
         ["ccc"], get_items_longer_than(["a", "bb", "ccc"], 2)
@@ -101,7 +113,7 @@ def get_items_longer_than_should_exclude_strings_equal_to_max_len():
 
 Write a function, get_sandwich_filling, that takes a list of sandwich
 ingredients (sandwich).
-This list represents the ingredients used to make a sandwich, it's first and
+Theis list represnts the ingredients used to make a sandwich, it's first and
 last items will be the 'bread'
 Return a list containing only the filling of the sandwich.
 
@@ -115,11 +127,18 @@ get_sandwich_filling(['a', 'b', 'c', 'd']) # returns ['b', 'c']
 
 
 def get_sandwich_filling(sandwich):
-    # your code here
+    sandwich_filling = []
+    for filling in sandwich:
+        if filling != 'bread':
+            sandwich_filling.append(filling)
+    return sandwich_filling
+            
     pass
+#def get_sandwich_filling(sandwich):
+    return [filling for filling in sandwich if filling != "bread"]
+# another example of list comprehension 
 
-
-@skip_test
+@run_test
 def get_sandwich_filling_should_return_list_with_single_filling():
     assert get_sandwich_filling(["bread", "lonely slice of cheese", "bread"]) == [
         "lonely slice of cheese"
@@ -129,7 +148,7 @@ def get_sandwich_filling_should_return_list_with_single_filling():
     )
 
 
-@skip_test
+@run_test
 def get_sandwich_filling_should_return_list_with_multiple_fillings():
     assert get_sandwich_filling(
         ["bread", "tomato", "lettuce", "cheese", "patty", "bread"]
@@ -141,7 +160,7 @@ def get_sandwich_filling_should_return_list_with_multiple_fillings():
     )
 
 
-@skip_test
+@run_test
 def get_sandwich_filling_should_return_empty_list_when_no_fillings():
     assert get_sandwich_filling(["bread", "bread"]) == [], format_err_msg(
         [], get_sandwich_filling(["bread", "bread"])
@@ -161,38 +180,49 @@ remove_item([3], 0) # returns []
 """
 
 
+
 def remove_item(items, n):
-    # your code here
+    # make a copy of the list
+    new_list = items[:]
+    # remove the item at index n
+    del new_list[n]
+    return new_list
+
     pass
+#def remove_item(items, n):
+    new_list = []
+    for i in range(len(items)):     # loop over indexes, not just values
+        if i != n:                  # skip the element at position n
+            new_list.append(items[i])
+    return new_list
 
-
-@skip_test
+@run_test
 def remove_item_should_return_list_with_specified_element_removed():
     assert remove_item([1], 0) == [], format_err_msg([], remove_item([1], 0))
 
 
-@skip_test
+@run_test
 def remove_item_should_return_list_containing_all_elements_that_havent_been_removed():
     assert remove_item([1, 2, 3, 4, 5], 2) == [1, 2, 4, 5], format_err_msg(
         [1, 2, 4, 5], remove_item([1, 2, 3, 4, 5], 2)
     )
 
 
-@skip_test
+@run_test
 def remove_item_should_only_remove_value_at_specified_index():
     assert remove_item([1, 2, 1, 2, 1], 2) == [1, 2, 2, 1], format_err_msg(
         [1, 2, 2, 1], remove_item([1, 2, 1, 2, 1], 2)
     )
 
 
-@skip_test
+@run_test
 def remove_item_should_return_new_list():
     items = [1, 2, 3]
     result = remove_item(items, 2)
     assert result is not items, format_err_msg("a new list", "original input list")
 
 
-@skip_test
+@run_test
 def remove_item_should_not_mutate_original_list():
     items = [1, 2, 3]
     remove_item(items, 2)
@@ -216,37 +246,38 @@ merge_lists([1, 2], [3, 4]) # returns [1, 2, 3, 4]
 
 
 def merge_lists(list1, list2):
-    # your code here
+    new_list = list1 + list2
+    return new_list
     pass
 
 
-@skip_test
+@run_test
 def merge_lists_should_merge_two_single_element_lists_together():
     assert merge_lists([1], [2]) == [1, 2], format_err_msg(
         [1, 2], merge_lists([1], [2])
     )
 
 
-@skip_test
+@run_test
 def merge_lists_should_merge_two_multi_element_lists_together():
     assert merge_lists([1, 2, 3], [4, 5, 6]) == [1, 2, 3, 4, 5, 6], format_err_msg(
         [1, 2, 3, 4, 5, 6], merge_lists([1, 2, 3], [4, 5, 6])
     )
 
 
-@skip_test
+@run_test
 def merge_lists_should_merge_two_lists_when_one_is_empty():
     assert merge_lists([1, 2, 3], []) == [1, 2, 3], format_err_msg(
         [1, 2, 3], merge_lists([1, 2, 3], [])
     )
 
 
-@skip_test
+@run_test
 def merge_lists_should_merge_two_lists_when_both_are_empty():
     assert merge_lists([], []) == [], format_err_msg([], merge_lists([], []))
 
 
-@skip_test
+@run_test
 def merge_lists_should_not_mutate_original_lists():
     list1 = [1, 2, 3]
     list2 = [4, 5, 6]
@@ -279,32 +310,36 @@ present in two lists
 
 
 def is_item_omnipresent(lists, item):
-    # your code here
+    for stuff in lists:
+        if item not in stuff:
+            return False
+    return True
+
     pass
+# so we are looking in lists so for stuff in lists and that stuff has to has to be in each list and return boolean to show this 
 
-
-@skip_test
+@run_test
 def is_item_omnipresent_should_return_false_if_item_is_missing_from_all_lists():
     assert is_item_omnipresent([[1], [2]], 3) is False, format_err_msg(
         False, is_item_omnipresent([[1], [2]], 3)
     )
 
 
-@skip_test
+@run_test
 def is_item_omnipresent_should_return_false_if_item_is_missing_from_a_single_list():
     assert is_item_omnipresent([[1], [2]], 1) is False, format_err_msg(
         False, is_item_omnipresent([[1], [2]], 1)
     )
 
 
-@skip_test
+@run_test
 def is_item_omnipresent_should_return_true_if_item_is_present_in_all_lists():
     assert is_item_omnipresent([[1], [1], [1]], 1) is True, format_err_msg(
         True, is_item_omnipresent([[1], [1], [1]], 1)
     )
 
 
-@skip_test
+@run_test
 def is_item_omnipresent_should_return_true_if_item_is_present_amongst_other_elements_in_mixed_lists():
     assert is_item_omnipresent([[5, 4, 3, 2, 1], [1, 4, 4], [9, 1, 1]], 1) is True, (
         format_err_msg(
@@ -330,18 +365,20 @@ flatten_list_by_one([[1], [2], [[3, 4]]])  # returns [1, 2, [3, 4]]
 
 
 def flatten_list_by_one(nested_lists):
-    # your code here
-    pass
+    flat_list = []
+    for sublist in nested_lists:
+        flat_list.extend(sublist)  # add all elements from this sublist
+    return flat_list
 
 
-@skip_test
+@run_test
 def flatten_list_by_one_should_remove_single_layer_of_nesting():
     assert flatten_list_by_one([[1], [2]]) == [1, 2], format_err_msg(
         [1, 2], flatten_list_by_one([[1], [2]])
     )
 
 
-@skip_test
+@run_test
 def flatten_list_by_one_should_preserve_subsequent_layers_of_nesting():
     assert flatten_list_by_one([[[1, 2]], [[3, 4]]]) == [
         [1, 2],
@@ -360,7 +397,7 @@ def flatten_list_by_one_should_preserve_subsequent_layers_of_nesting():
     )
 
 
-@skip_test
+@run_test
 def flatten_list_by_one_should_combine_levels_of_nesting():
     assert flatten_list_by_one([[1, 2], [3, [4, 5]]]) == [
         1,
